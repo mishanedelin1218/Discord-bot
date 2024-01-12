@@ -1,0 +1,45 @@
+import discord
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print('Ready')
+
+hello_words = ("привет","ку","дароу","здарова")    
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    
+    msg = message.content.lower()
+
+    if msg in hello_words:
+        await message.channel.send ("и тебе привет, человек")
+
+    elif message.content.startswith("батарейка"):
+        await message.channel.send("батарейки надо складовать в Коричневый контейнер")
+
+    elif message.content.startswith("бумага"):
+        await message.channel.send("бумагу надо складовать в Синий контейнер")   
+
+    elif message.content.startswith("пластик"):
+        await message.channel.send("пластик надо складовать в Оранжевый контейнер")
+
+    elif message.content.startswith("пищевые отходы"):
+        await message.channel.send("пищевые отходы надо складовать в Чёрный контейнер") 
+
+    elif message.content.startswith("картон"):
+        await message.channel.send("картон надо складовать в Жёлтый контейнер")
+
+    elif message.content.startswith("стекло"):
+        await message.channel.send("стекло надо складовать в Зелёный контейнер")     
+
+    else: 
+        await message.channel.send(message.content)   
+
+client.run("MTE4MDE3ODQzNzcxODE0NzEyNA.GeC88U.H-3r1mih8IVYQhejRosMIRxHudEqtgK811qSSI")    
